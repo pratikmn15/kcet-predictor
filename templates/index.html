@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block colleges %}
+
+<h1>Colleges</h1>
+<div class="container my table-container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        {% for col in columns %}
+        <th>{{ col }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in rows %}
+      <tr>
+        {% for cell in row %}
+        <td>{{ cell }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!-- <div class="container">
+          {% if fname %}
+          <h1>hello {{fname}}!</h1>
+          {% endif %}
+      </div> -->
+{% endblock colleges %}

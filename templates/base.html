@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+    body {
+
+        margin: 0;
+        padding: 0;
+
+    }
+
+    .container {
+        background-color: white;
+        width: 80%;
+        margin: auto;
+        padding: 20px;
+        border-radius: 1rem;
+    }
+    .table-container {
+        width: 100%; /* Adjust width as needed */
+        max-height: 400px; /* Adjust height as needed */
+        overflow: auto;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+    }
+</style>
+
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <!-- <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
+                KCET College Predictor
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Hello !!</h1>
+        <div class="container my-4">
+            <div class="row mb-3 p-0">
+                    <form action="/submit" method="POST" class="p-0">
+                        <label for="exampleInputEmail1" class="form-label">Enter your KCET rank</label>
+                        <input type="number" class="form-control" name="rank" id="rank" min="1" max="200000" value="{{rank}}">
+
+                <div class="col">
+                    <div class="form-label">Category</div>
+                    <select class="form-select" aria-label="Default select example" name="cat" id="cat">
+                        <option value="GM" selected>GM</option>
+                        <option value="_1G">1G</option>
+                        <option value="_1K">1K</option>
+                        <option value="_1R">1R</option>
+                        <option value="_2AG">2AG</option>
+                        <option value="_2AK">2AK</option>
+                        <option value="_2AR">2AR</option>
+                        <option value="_2BG">2BG</option>
+                        <option value="_2BK">2BK</option>
+                        <option value="_2BR">2BR</option>
+                        <option value="_3AG">3AG</option>
+                        <option value="_3AK">3AK</option>
+                        <option value="_3AR">3AR</option>
+                        <option value="_3BG">3BG</option>
+                        <option value="_3BK">3BK</option>
+                        <option value="_3BR">3BR</option>
+                        <option value="GMK">GMK</option>
+                        <option value="GMR">GMR</option>
+                        <option value="SCG">SCG</option>
+                        <option value="SCK">SCK</option>
+                        <option value="SCR">SCR</option>
+                        <option value="STG">STG</option>
+                        <option value="STK">STK</option>
+                        <option value="STR">STR</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- <div class="mb-3">
+
+      </div> -->
+            <!-- <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" class="form-control" name="lname" id="exampleInputPassword1">
+              </div> -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </div>
+{% block colleges %}
+    
+{% endblock colleges %}
+
+
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
