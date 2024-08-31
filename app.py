@@ -14,10 +14,8 @@ def home():
 @app.route('/submit',methods=['POST','GET'])
 def query_entries():
     cat = request.form.get('cat')
-    rank = request.form.get('rank')
-    urank = str(int(rank)+3000)
-    lrank = str(int(rank)-3000)
-    print(rank)
+    lrank = request.form.get('lrank')
+    urank = request.form.get('urank')
     query = f"SELECT BRANCH, {cat}, COLLEGES FROM cutoff WHERE {cat} BETWEEN {lrank} AND {urank};"
 
     rows = []
@@ -30,7 +28,7 @@ def query_entries():
     except Exception as e:
         return f"An error occurred: {e}"
 
-    return render_template('index.html',rows=rows, columns= columns,cat=cat,rank=rank)
+    return render_template('index.html',rows=rows, columns= columns,cat=cat,lrank=lrank,urank=urank)
 
 if __name__ == '__main__':
     app.run(debug=True)
