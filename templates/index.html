@@ -2,6 +2,19 @@
 {% block colleges %}
 
 <h1>Colleges</h1>
+<div class="alerts">{% if rounds %}
+  Showing results for {% if rounds == '2023r1' %}
+  2023 Round 1 {% elif rounds == '2023r2' %} 2023 Round 2 {% elif rounds == '2023r3' %} 2023 Round 3 {% endif %}, {% if
+  cat == 'GM' %}
+  GM {% elif cat == '_1G' %} 1G {% elif cat == '_1K' %} 1K {% elif cat == '_1R' %} 1R {% elif cat == '_2AG' %} 2AG {%
+  elif cat == '_2AK' %} 2AK {% elif cat == '_2AR' %} 2AR {% elif cat == '_2BG' %} 2BG {% elif cat == '_2BK' %} 2BK {%
+  elif cat == '_2BR' %} 2BR {% elif cat == '_3AG' %} 3AG {% elif cat == '_3AK' %} 3AK {% elif cat == '_3AR' %} 3AR {%
+  elif cat == '_3BG' %} 3BG {% elif cat == '_3BK' %} 3BK {% elif cat == '_3BR' %} 3BR {% elif cat == 'GMK' %} GMK {%
+  elif cat == 'GMR' %} GMR {% elif cat == 'SCG' %} SCG {% elif cat == 'SCK' %} SCK {% elif cat == 'SCR' %} SCR {% elif
+  cat == 'STG' %} STG {% elif cat == 'STK' %} STK {% elif cat == 'STR' %} STR
+
+  {% endif %} category
+  {% endif %}</div>
 <div class="container my table-container">
 
   <table class="table table-striped">
