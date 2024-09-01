@@ -100,11 +100,12 @@
             <div class="row mb-3 p-0">
                 <form action="/submit" method="POST" class="p-0">
                     <div class="row mobw mobm">
-                        <label for="lrank" class="form-label">Enter the KCET rank range</label>
+                        <label for="lrank" class="form-label">Enter the KCET rank range<span style="opacity: 0.5;"> (For example : rank 1000 to rank 10000)</span></label>
                         <input type="number" class="form-control col mx-3" name="lrank" id="lrank" min="1" max="200000"
-                            value="{{lrank}}">
+                            value="{% if lrank %}{{lrank}}{% else %}min{% endif %}" required>
+                        <span style="opacity: 0.5;  text-align: center;" class="col">TO</span>
                         <input type="number" class="form-control col mx-3" name="urank" id="urank" min="1" max="200000"
-                            value="{{urank}}">
+                            value="{% if urank %}{{urank}}{% else %}max{% endif %}" required>
                     </div>
                     <div class="row mobw mobm">
                         <div class="col mobp mobm1" >
@@ -113,6 +114,7 @@
                                 <option value="2023r1" {% if rounds == '2023r1' %}selected{% endif %}>2023 Round 1</option>
                                 <option value="2023r2" {% if rounds == '2023r2' %}selected{% endif %}>2023 Round 2</option>
                                 <option value="2023r3" {% if rounds == '2023r3' %}selected{% endif %}>2023 Round 3</option>
+                                <option value="2024r1" {% if rounds == '2024r1' %}selected{% endif %}>2024 Round 1</option>
                             </select>
                         </div>
                         <div class="col mobp mobm1">

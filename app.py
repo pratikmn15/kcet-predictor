@@ -9,6 +9,8 @@ engine = create_engine(DATABASE_URI)
 
 @app.route('/',methods=['POST','GET'])
 def home():
+    # svg = render_template('templates/to.svg')
+    # svg = './templates/to.svg'
     return render_template('index.html')
 
 @app.route('/submit',methods=['POST','GET'])
