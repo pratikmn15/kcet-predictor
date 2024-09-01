@@ -41,86 +41,115 @@
     .main {
         /* opacity: 0.5; */
     }
+
+    @media only screen and (max-width: 768px) {
+        .container {
+            width: 100%;
+            padding: 10px;
+        }
+
+        .mobm {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        .mobp {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .mobw {
+            width: 100%;
+        }
+        .mobp1 {
+            padding-left: 1.5rem; 
+            padding-right: 1.5rem;
+        }
+        .mobm1 {
+            margin-left: 0.75rem;
+            margin-right: 0.75rem;
+        }
+        .mobm05 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .table-container {
+            max-height: 300px;
+        }
+
+        .main {
+            opacity: 1;
+        }
+    }
 </style>
 
 <body>
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
-                <!-- <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top"> -->
                 KCET College Predictor
             </a>
         </div>
     </nav>
-    <div class="container main">
+    <div class="container main mobm">
         <h1>Hello !!</h1>
-        <div class="container my-4">
+        <div class="container my-4 mobm mobp">
             <div class="row mb-3 p-0">
                 <form action="/submit" method="POST" class="p-0">
-                    <div class="row">
+                    <div class="row mobw mobm">
                         <label for="lrank" class="form-label">Enter the KCET rank range</label>
                         <input type="number" class="form-control col mx-3" name="lrank" id="lrank" min="1" max="200000"
                             value="{{lrank}}">
                         <input type="number" class="form-control col mx-3" name="urank" id="urank" min="1" max="200000"
                             value="{{urank}}">
                     </div>
-                    <div class="row">
-                        <div class="col">
+                    <div class="row mobw mobm">
+                        <div class="col mobp mobm1" >
                             <div class="form-label">Round</div>
                             <select class="form-select" aria-label="Default select example" name="round" id="round">
-                                <option value="2023r1" selected>2023 Round 1</option>
-                                <option value="2023r2">2023 Round 2</option>
-                                <option value="2023r3">2023 Round 3</option>
+                                <option value="2023r1" {% if rounds == '2023r1' %}selected{% endif %}>2023 Round 1</option>
+                                <option value="2023r2" {% if rounds == '2023r2' %}selected{% endif %}>2023 Round 2</option>
+                                <option value="2023r3" {% if rounds == '2023r3' %}selected{% endif %}>2023 Round 3</option>
                             </select>
                         </div>
-                        <div class="col">
+                        <div class="col mobp mobm1">
                             <div class="form-label">Category</div>
                             <select class="form-select" aria-label="Default select example" name="cat" id="cat">
-                                <option value="GM" selected>GM</option>
-                                <option value="_1G">1G</option>
-                                <option value="_1K">1K</option>
-                                <option value="_1R">1R</option>
-                                <option value="_2AG">2AG</option>
-                                <option value="_2AK">2AK</option>
-                                <option value="_2AR">2AR</option>
-                                <option value="_2BG">2BG</option>
-                                <option value="_2BK">2BK</option>
-                                <option value="_2BR">2BR</option>
-                                <option value="_3AG">3AG</option>
-                                <option value="_3AK">3AK</option>
-                                <option value="_3AR">3AR</option>
-                                <option value="_3BG">3BG</option>
-                                <option value="_3BK">3BK</option>
-                                <option value="_3BR">3BR</option>
-                                <option value="GMK">GMK</option>
-                                <option value="GMR">GMR</option>
-                                <option value="SCG">SCG</option>
-                                <option value="SCK">SCK</option>
-                                <option value="SCR">SCR</option>
-                                <option value="STG">STG</option>
-                                <option value="STK">STK</option>
-                                <option value="STR">STR</option>
+                                <option value="GM" {% if cat == 'GM' %}selected{% endif %}>GM</option>
+                                <option value="_1G" {% if cat == '_1G' %}selected{% endif %}>1G</option>
+                                <option value="_1K" {% if cat == '_1K' %}selected{% endif %}>1K</option>
+                                <option value="_1R" {% if cat == '_1R' %}selected{% endif %}>1R</option>
+                                <option value="_2AG" {% if cat == '_2AG' %}selected{% endif %}>2AG</option>
+                                <option value="_2AK" {% if cat == '_2AK' %}selected{% endif %}>2AK</option>
+                                <option value="_2AR" {% if cat == '_2AR' %}selected{% endif %}>2AR</option>
+                                <option value="_2BG" {% if cat == '_2BG' %}selected{% endif %}>2BG</option>
+                                <option value="_2BK" {% if cat == '_2BK' %}selected{% endif %}>2BK</option>
+                                <option value="_2BR" {% if cat == '_2BR' %}selected{% endif %}>2BR</option>
+                                <option value="_3AG" {% if cat == '_3AG' %}selected{% endif %}>3AG</option>
+                                <option value="_3AK" {% if cat == '_3AK' %}selected{% endif %}>3AK</option>
+                                <option value="_3AR" {% if cat == '_3AR' %}selected{% endif %}>3AR</option>
+                                <option value="_3BG" {% if cat == '_3BG' %}selected{% endif %}>3BG</option>
+                                <option value="_3BK" {% if cat == '_3BK' %}selected{% endif %}>3BK</option>
+                                <option value="_3BR" {% if cat == '_3BR' %}selected{% endif %}>3BR</option>
+                                <option value="GMK" {% if cat == 'GMK' %}selected{% endif %}>GMK</option>
+                                <option value="GMR" {% if cat == 'GMR' %}selected{% endif %}>GMR</option>
+                                <option value="SCG" {% if cat == 'SCG' %}selected{% endif %} >SCG</option>
+                                <option value="SCK" {% if cat == 'SCK' %}selected{% endif %}>SCK</option>
+                                <option value="SCR" {% if cat == 'SCR' %}selected{% endif %}>SCR</option>
+                                <option value="STG" {% if cat == 'STG' %}selected{% endif %}>STG</option>
+                                <option value="STK" {% if cat == 'STK' %}selected{% endif %}>STK</option>
+                                <option value="STR" {% if cat == 'STR' %}selected{% endif %}>STR</option>
                             </select>
                         </div>
                     </div>
             </div>
-
-            <!-- <div class="mb-3">
-
-      </div> -->
-            <!-- <div class="mb-3">
-                  <label for="exampleInputPassword1" class="form-label">Password</label>
-                  <input type="password" class="form-control" name="lname" id="exampleInputPassword1">
-              </div> -->
             <button type="submit" class="btn btn-primary">Submit</button>
-
         </div>
         {% block colleges %}
-
         {% endblock colleges %}
-
-
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
