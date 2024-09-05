@@ -35,4 +35,4 @@ def query_entries():
     return render_template('index.html',rows=rows, columns= columns,cat=cat,lrank=lrank,urank=urank,rounds=round)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='10.14.143.110')
+    app.run(debug=True)
