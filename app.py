@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from sqlalchemy import create_engine, text
 
 app = Flask(__name__)
@@ -14,25 +14,28 @@ def home():
     return render_template('index.html')
 
 @app.route('/submit',methods=['POST','GET'])
+
 def query_entries():
+    if request.method == 'POST':
+        cat = request.form.get('cat')
+        lrank = request.form.get('lrank')
+        urank = request.form.get('urank')
+        round = request.form.get('round')
+        query = f"SELECT BRANCH, {cat}, COLLEGES FROM '{round}' WHERE {cat} BETWEEN {lrank} AND {urank};"
 
-    cat = request.form.get('cat')
-    lrank = request.form.get('lrank')
-    urank = request.form.get('urank')
-    round = request.form.get('round')
-    query = f"SELECT BRANCH, {cat}, COLLEGES FROM '{round}' WHERE {cat} BETWEEN {lrank} AND {urank};"
+        rows = []
+        columns = []
+        try:
+            with engine.connect() as connection:
+                result = connection.execute(text(query))
+                rows = result.fetchall()
+                columns = result.keys()
+        except Exception as e:
+            return f"An error occurred: {e}"
 
-    rows = []
-    columns = []
-    try:
-        with engine.connect() as connection:
-            result = connection.execute(text(query))
-            rows = result.fetchall()
-            columns = result.keys()
-    except Exception as e:
-        return f"An error occurred: {e}"
-
-    return render_template('index.html',rows=rows, columns= columns,cat=cat,lrank=lrank,urank=urank,rounds=round)
+        return render_template('index.html',rows=rows, columns= columns,cat=cat,lrank=lrank,urank=urank,rounds=round)
+    else:
+        return redirect(url_for('home'))
 
 if __name__ == '__main__':
     app.run(debug=True)
