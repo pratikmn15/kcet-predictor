@@ -7,86 +7,11 @@
     <title>KCET Predictor</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles1.css') }}">
 </head>
 
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
-    }
-
-    .alerts {
-        color: black;
-        opacity: 0.5;
-        font-size: medium;
-    }
-
-    .container {
-        background-color: white;
-        width: 80%;
-        margin: auto;
-        padding: 20px;
-        border-radius: 1rem;
-    }
-
-    .table-container {
-        width: 100%;
-        max-height: 400px;
-        overflow: auto;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-    }
-
-    .main {
-        /* opacity: 0.5; */
-    }
-
-    @media only screen and (max-width: 768px) {
-        .container {
-            width: 100%;
-            padding: 10px;
-        }
-
-        .mobm {
-            margin-left: 0;
-            margin-right: 0;
-        }
-
-        .mobp {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .mobw {
-            width: 100%;
-        }
-        .mobp1 {
-            padding-left: 1.5rem; 
-            padding-right: 1.5rem;
-        }
-        .mobm1 {
-            margin-left: 0.75rem;
-            margin-right: 0.75rem;
-        }
-        .mobm05 {
-            margin-left: 0.5rem;
-            margin-right: 0.5rem;
-        }
-    }
-
-    @media only screen and (max-width: 480px) {
-        .table-container {
-            max-height: 300px;
-        }
-
-        .main {
-            opacity: 1;
-        }
-    }
-</style>
-
 <body>
+    <div class="glass">
     <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">
@@ -94,16 +19,17 @@
             </a>
         </div>
     </nav>
-    <div class="container main mobm">
+</div>
+    <div class="container main mobm pcm glass maindiv">
         <h1>Hello !!</h1>
-        <div class="container my-4 mobm mobp">
+        <div class="container my-4 mobm mobp glass1" style="color: white;">
             <div class="row mb-3 p-0">
                 <form action="/submit" method="POST" class="p-0">
                     <div class="row mobw mobm">
                         <label for="lrank" class="form-label">Enter the KCET rank range<span style="opacity: 0.5;"> (For example : rank 1000 to rank 10000)</span></label>
                         <input type="number" class="form-control col mx-3" name="lrank" id="lrank" min="1" max="200000"
                             value="{% if lrank %}{{lrank}}{% else %}min{% endif %}" required>
-                        <span style="opacity: 0.5;  text-align: center;" class="col">TO</span>
+                        <span style="opacity: 0.5;  text-align: center;" class="col-1">TO</span>
                         <input type="number" class="form-control col mx-3" name="urank" id="urank" min="1" max="200000"
                             value="{% if urank %}{{urank}}{% else %}max{% endif %}" required>
                     </div>
@@ -148,7 +74,7 @@
                         </div>
                     </div>
             </div>
-            <button type="submit" class="btn btn-secondary">Submit</button>
+            <button type="submit" class="btn btn-secondary" >Submit</button>
         </div>
         {% block colleges %}
         {% endblock colleges %}
@@ -156,6 +82,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>

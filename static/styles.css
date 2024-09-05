@@ -1,7 +1,9 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: rgba(var(--bs-tertiary-bg-rgb), var(--bs-bg-opacity)) !important;
+    background: rgb(2,0,36);
+/* background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%); */
+    background-color: white;
 }
 
 .alerts {
@@ -74,4 +76,40 @@ body {
     .main {
         opacity: 1;
     }
+}
+.glass {
+    /* From https://css.glass */
+/* background: rgba(101, 152, 255, 0.44);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(101, 152, 255, 0.3); */
+/* From https://css.glass */
+background: rgba(214, 234, 255, 0.56);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5.4px);
+-webkit-backdrop-filter: blur(5.4px);
+border: 1px solid rgba(214, 234, 255, 0.88);
+}
+.round {
+    border-radius: 16px;
+}
+.navcolor {
+    background-color: #090979;
+}
+
+.glass1 {
+    /* From https://css.glass */
+/* From https://css.glass */
+background: rgba(0, 1, 2, 0.34);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(5px);
+-webkit-backdrop-filter: blur(5px);
+border: 1px solid rgba(0, 1, 2, 0.3);
+}
+.maindiv {
+    margin-top: 3rem;
 }
