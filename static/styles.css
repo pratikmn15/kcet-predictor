@@ -155,7 +155,16 @@ body {
 .table tr:last-child td:last-child {
     border-bottom-right-radius: 8px;
 }
-
+.to-span {
+    opacity: 0.5;
+    text-align: center;
+    padding-bottom: 1rem;
+    padding-right: 0;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 /* Additional Glass Effect Styles */
 .glass {
     background: rgba(48, 48, 48, 0.8);
@@ -267,13 +276,3 @@ body {
     opacity: 0.9;
 }
 
-.to-span {
-    opacity: 0.5;
-    text-align: center;
-    padding-bottom: 1rem;
-    padding-right: 0;
-    padding-left: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
