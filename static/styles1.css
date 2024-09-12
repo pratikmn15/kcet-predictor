@@ -252,7 +252,7 @@ body {
     }
 }
 
-/* Alerts */
+
 .alerts {
     color: #333;
     background-color: #b0b0b0;
@@ -262,7 +262,7 @@ body {
     border-radius: 4px;
 }
 
-/* Main Section Opacity */
+
 .main {
     opacity: 0.9;
 }
@@ -276,5 +276,4 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-
 }
