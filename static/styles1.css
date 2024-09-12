@@ -9,13 +9,16 @@ body {
 
 /* Navbar Styles */
 .navbar {
-    background-color: #1c1c1c !important; /* Ensure the background is dark */
-    color: #e0e0e0 !important; /* Ensure the text color is applied */
+    background-color: #1c1c1c !important;
+    /* Ensure the background is dark */
+    color: #e0e0e0 !important;
+    /* Ensure the text color is applied */
     padding: 1rem;
 }
 
 .navbar a {
-    color: #e0e0e0 !important; /* Ensure the link color is applied */
+    color: #e0e0e0 !important;
+    /* Ensure the link color is applied */
     text-decoration: none;
     font-weight: bold;
 }
@@ -41,10 +44,14 @@ body {
     width: 100%;
     max-height: 300px;
     overflow: auto;
-    border-radius: 8px; /* Rounded corners */
-    border: 1px solid #444; /* Lighter border for definition */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 4px 8px rgba(0, 0, 0, 0.4); /* Outer and inner shadow for depth */
-    padding: 1rem; /* Padding for spacing */
+    border-radius: 8px;
+    /* Rounded corners */
+    border: 1px solid #444;
+    /* Lighter border for definition */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Outer and inner shadow for depth */
+    padding: 1rem;
+    /* Padding for spacing */
 }
 
 
@@ -57,7 +64,8 @@ body {
     margin-bottom: 0.5rem;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     background-color: #1c1c1c;
     color: #e0e0e0;
     border-radius: 8px;
@@ -66,30 +74,40 @@ body {
     margin-bottom: 1rem;
 }
 
-.form-control:focus, .form-select:focus {
-    background-color: #1c1c1c; /* Keep background black */
-    color: #e0e0e0; /* Ensure text color is consistent */
-    border: 1px solid #666; /* Slightly lighter border on focus for contrast */
-    outline: none; /* Remove default focus outline */
-    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2); /* Subtle shadow for focus indication */
+.form-control:focus,
+.form-select:focus {
+    background-color: #1c1c1c;
+    /* Keep background black */
+    color: #e0e0e0;
+    border: 1px solid #666;
+    /* Slightly lighter border on focus for contrast */
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
+    /* Subtle shadow for focus indication */
 }
 
 /* Button Styles */
 .btn-secondary {
-    background: linear-gradient(135deg, #1a1a1a, #333333); /* Gradient background */
+    background: linear-gradient(135deg, #1a1a1a, #333333);
+    /* Gradient background */
     border: none;
     border-radius: 8px;
     padding: 0.5rem 1rem;
     color: #ffffff;
     cursor: pointer;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
-    transition: background 0.3s, transform 0.2s; /* Smooth transitions */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    /* Subtle shadow for depth */
+    transition: background 0.3s, transform 0.2s;
+    /* Smooth transitions */
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #333333, #1a1a1a); /* Reversed gradient on hover */
+    background: linear-gradient(135deg, #333333, #1a1a1a);
+    /* Reversed gradient on hover */
     color: #f0f0f0;
-    transform: scale(1.05); /* Slight scale effect for hover */
+    transform: scale(1.05);
+    /* Slight scale effect for hover */
 }
 
 /* Table Styles */
@@ -107,7 +125,8 @@ body {
     color: #e0e0e0;
 }
 
-.table th, .table td {
+.table th,
+.table td {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #333;
@@ -120,6 +139,7 @@ body {
 .table tr:hover {
     background-color: #2a2a2a;
 }
+
 .table th:first-child {
     border-top-left-radius: 8px;
 }
@@ -155,6 +175,10 @@ body {
     .container {
         width: 90%;
         padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        /* Lighter shadow */
+        backdrop-filter: none;
+        /* Disable blur for mobile */
     }
 
     .navbar {
@@ -173,15 +197,20 @@ body {
         padding: 0.4rem 0.8rem;
     }
 
-    .table th, .table td {
+    .table th,
+    .table td {
         padding: 10px;
     }
 
     .table-container {
-        max-height: 250px; /* Adjusted for better fit on smaller screens */
+        max-height: 250px;
+        /* Adjusted for better fit on smaller screens */
     }
-    .form-control, .form-select {
-        padding: 0.75rem; /* Consistent padding */
+
+    .form-control,
+    .form-select {
+        padding: 0.75rem;
+        /* Consistent padding */
     }
 }
 
@@ -199,8 +228,10 @@ body {
         font-size: 0.8rem;
     }
 
-    .form-control, .form-select {
-        padding: 1rem; /* Further increased padding for very small screens */
+    .form-control,
+    .form-select {
+        padding: 1rem;
+        /* Further increased padding for very small screens */
     }
 
     .btn-secondary {
@@ -209,12 +240,15 @@ body {
     }
 
     .table-container {
-        max-height: 200px; /* Further reduced max-height */
+        max-height: 200px;
+        /* Further reduced max-height */
     }
 
-    .table th, .table td {
+    .table th,
+    .table td {
         padding: 8px;
-        font-size: 0.8rem; /* Smaller font size */
+        font-size: 0.8rem;
+        /* Smaller font size */
     }
 }
 
@@ -231,4 +265,16 @@ body {
 /* Main Section Opacity */
 .main {
     opacity: 0.9;
+}
+
+.to-span {
+    opacity: 0.5;
+    text-align: center;
+    padding-bottom: 1rem;
+    padding-right: 0;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }

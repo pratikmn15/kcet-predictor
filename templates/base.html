@@ -24,12 +24,12 @@
         <h1>Hello !!</h1>
         <div class="container my-4 mobm mobp glass1" style="color: white;">
             <div class="row mb-3 p-0">
-                <form action="/submit" method="POST" class="p-0">
+                <form class="p-0" id="formInfo">
                     <div class="row mobw mobm">
                         <label for="lrank" class="form-label">Enter the KCET rank range<span style="opacity: 0.5;"> (For example : rank 1000 to rank 10000)</span></label>
                         <input type="number" class="form-control col mx-3" name="lrank" id="lrank" min="1" max="200000"
                             value="{% if lrank %}{{lrank}}{% else %}min{% endif %}" required>
-                        <span style="opacity: 0.5;  text-align: center;" class="col-1">TO</span>
+                        <span class="col-1 to-span">TO</span>
                         <input type="number" class="form-control col mx-3" name="urank" id="urank" min="1" max="200000"
                             value="{% if urank %}{{urank}}{% else %}max{% endif %}" required>
                     </div>
@@ -74,7 +74,7 @@
                         </div>
                     </div>
             </div>
-            <button type="submit" class="btn btn-secondary" >Submit</button>
+            <button type="submit" class="btn btn-secondary" id="submit-button">Submit</button>
         </div>
         {% block colleges %}
         {% endblock colleges %}

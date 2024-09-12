@@ -2,43 +2,79 @@
 {% block colleges %}
 
 <h1>Colleges</h1>
-<div class="alerts">{% if rounds %}
-  Showing results for {% if rounds == '2023r1' %}
-  2023 Round 1 {% elif rounds == '2023r2' %} 2023 Round 2 {% elif rounds == '2023r3' %} 2023 Round 3{% elif rounds == '2024r1' %} 2024 Round 1 {% endif %}, {% if
-  cat == 'GM' %}
-  GM {% elif cat == '_1G' %} 1G {% elif cat == '_1K' %} 1K {% elif cat == '_1R' %} 1R {% elif cat == '_2AG' %} 2AG {%
-  elif cat == '_2AK' %} 2AK {% elif cat == '_2AR' %} 2AR {% elif cat == '_2BG' %} 2BG {% elif cat == '_2BK' %} 2BK {%
-  elif cat == '_2BR' %} 2BR {% elif cat == '_3AG' %} 3AG {% elif cat == '_3AK' %} 3AK {% elif cat == '_3AR' %} 3AR {%
-  elif cat == '_3BG' %} 3BG {% elif cat == '_3BK' %} 3BK {% elif cat == '_3BR' %} 3BR {% elif cat == 'GMK' %} GMK {%
-  elif cat == 'GMR' %} GMR {% elif cat == 'SCG' %} SCG {% elif cat == 'SCK' %} SCK {% elif cat == 'SCR' %} SCR {% elif
-  cat == 'STG' %} STG {% elif cat == 'STK' %} STK {% elif cat == 'STR' %} STR
+<div class="alerts" id="alerts">
+</div>
 
-  {% endif %} category
-  {% endif %}</div>
+
 <div class="container my table-container round">
 
   <table class="table table-dark table-striped">
     <thead>
-      <tr>
-        {% for col in columns %}
-        <th>{{ col }}</th>
-        {% endfor %}
+      <tr id="table-header">
       </tr>
     </thead>
-    <tbody>
-      {% for row in rows %}
-      <tr>
-        {% for cell in row %}
-        <td>{{ cell }}</td>
-        {% endfor %}
-      </tr>
-      {% endfor %}
+    <tbody id="table-data">
     </tbody>
   </table>
 </div>
-<!-- <div class="container">
-          {% if fname %}
-          <h1>hello {{fname}}!</h1>
-          {% endif %}
-      </div> -->
+<script>
+  const form = document.getElementById('formInfo');
+  form.addEventListener('submit', function(event) {
+      event.preventDefault(); 
+
+      const formData = new FormData(form);
+
+      fetch('/submit', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => response.json())  
+      .then(data => {
+          data = data.message;
+          const tableHeader = document.getElementById('table-header');
+          const tableData = document.getElementById('table-data');
+          tableHeader.innerHTML = '';
+          tableData.innerHTML = '';
+          data.columns.forEach(col => {
+              const th = document.createElement('th');
+              th.textContent = col;
+              tableHeader.appendChild(th);
+          });
+          data.rows.forEach(row => {
+              const tr = document.createElement('tr');
+              row.forEach(cell => {
+                  const td = document.createElement('td');
+                  td.textContent = cell;
+                  tr.appendChild(td);
+              });
+              tableData.appendChild(tr);
+          });
+          alerts = document.getElementById('alerts');
+          alerts.innerHTML = '';
+          Round = String(formData.get('round'));
+          console.log(Round);
+          let round = "";
+          if(Round === '2023r1'){
+            round = '2023 Round 1';
+          } 
+          else if(Round === '2023r2'){
+            round = '2023 Round 2';
+          }
+          else if(Round === '2023r3'){
+            round = '2023 Round 3';
+          }
+          else if(Round === '2024r1'){
+            round = '2024 Round 1';
+          }
+          alerts.textContent = "Showing results for " + round + ", " + formData.get('cat') + " category";
+          
+      })
+      .catch(error => {
+          console.error('Error:', error);
+          responseMessage.textContent = 'An error occurred!';
+      });
+  });
+
+</script>
+
 {% endblock colleges %}
