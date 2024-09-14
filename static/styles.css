@@ -205,7 +205,7 @@ body {
     }
 
     .table-container {
-        max-height: 250px;
+        max-height: 620px !important;
         
     }
 
@@ -247,7 +247,7 @@ body {
     }
 
     .table-container {
-        max-height: 200px;
+        max-height: 350px !important;
         
     }
 

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block colleges %}
 
-<h1>Colleges</h1>
+<h1 id="target">Colleges</h1>
 <div class="alerts" id="alerts">
 </div>
 
@@ -19,62 +19,65 @@
 </div>
 <script>
   const form = document.getElementById('formInfo');
-  form.addEventListener('submit', function(event) {
-      event.preventDefault(); 
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
 
-      const formData = new FormData(form);
+    const formData = new FormData(form);
 
-      fetch('/submit', {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.json())  
+    fetch('/submit', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => response.json())
       .then(data => {
-          data = data.message;
-          const tableHeader = document.getElementById('table-header');
-          const tableData = document.getElementById('table-data');
-          tableHeader.innerHTML = '';
-          tableData.innerHTML = '';
-          data.columns.forEach(col => {
-              const th = document.createElement('th');
-              th.textContent = col;
-              tableHeader.appendChild(th);
+        data = data.message;
+        const tableHeader = document.getElementById('table-header');
+        const tableData = document.getElementById('table-data');
+        tableHeader.innerHTML = '';
+        tableData.innerHTML = '';
+        data.columns.forEach(col => {
+          const th = document.createElement('th');
+          th.textContent = col;
+          tableHeader.appendChild(th);
+        });
+        data.rows.forEach(row => {
+          const tr = document.createElement('tr');
+          row.forEach(cell => {
+            const td = document.createElement('td');
+            td.textContent = cell;
+            tr.appendChild(td);
           });
-          data.rows.forEach(row => {
-              const tr = document.createElement('tr');
-              row.forEach(cell => {
-                  const td = document.createElement('td');
-                  td.textContent = cell;
-                  tr.appendChild(td);
-              });
-              tableData.appendChild(tr);
-          });
-          alerts = document.getElementById('alerts');
-          alerts.innerHTML = '';
-          Round = String(formData.get('round'));
-          console.log(Round);
-          let round = "";
-          if(Round === '2023r1'){
-            round = '2023 Round 1';
-          } 
-          else if(Round === '2023r2'){
-            round = '2023 Round 2';
-          }
-          else if(Round === '2023r3'){
-            round = '2023 Round 3';
-          }
-          else if(Round === '2024r1'){
-            round = '2024 Round 1';
-          }
-          else if(Round === '2022r3'){
-            round = '2022 Round 3';
-          }
-          alerts.textContent = "Showing results for " + round + ", " + formData.get('cat') + " category";
-          
+          tableData.appendChild(tr);
+        });
+        alerts = document.getElementById('alerts');
+        alerts.innerHTML = '';
+        Round = String(formData.get('round'));
+        console.log(Round);
+        let round = "";
+        if (Round === '2023r1') {
+          round = '2023 Round 1';
+        }
+        else if (Round === '2023r2') {
+          round = '2023 Round 2';
+        }
+        else if (Round === '2023r3') {
+          round = '2023 Round 3';
+        }
+        else if (Round === '2024r1') {
+          round = '2024 Round 1';
+        }
+        else if (Round === '2022r3') {
+          round = '2022 Round 3';
+        }
+        alerts.textContent = "Showing results for " + round + ", " + formData.get('cat') + " category";
+        
+        document.getElementById('target').scrollIntoView({ behavior: 'smooth' });
+
+
       })
       .catch(error => {
-          console.error('Error:', error);
-          responseMessage.textContent = 'An error occurred!';
+        console.error('Error:', error);
+        responseMessage.textContent = 'An error occurred!';
       });
   });
 
