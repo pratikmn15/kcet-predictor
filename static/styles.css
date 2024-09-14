@@ -1,3 +1,92 @@
+@media only screen and (max-width: 768px) {
+    .container {
+        /* width: 90% ; */
+        padding: 1.5rem !important;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1) !important;
+        backdrop-filter: none !important;
+    }
+
+    .navbar {
+        padding: 0.75rem;
+    }
+
+    .navbar a {
+        font-size: 1.5rem;
+    }
+
+    .form-label {
+        font-size: 0.9rem;
+    }
+
+    .btn-secondary {
+        padding: 0.4rem 0.8rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 10px;
+    }
+
+    .table-container {
+        max-height: 600px !important;
+        
+    }
+
+    .form-control,
+    .form-select {
+        padding: 0.75rem;
+       
+    }
+    body {
+        background-color: #333333 !important;
+    }
+    /* .navbar-brand {
+        font-size: 2rem;
+    } */
+}
+
+@media only screen and (max-width: 480px) {
+    .navbar-brand {
+        font-size: 1.5rem;
+    }
+    .container {
+        width: 100%;
+        padding: 1rem;
+    }
+    body {
+        background-color: #333333 !important;
+    }
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .navbar a {
+        font-size: 1.2rem;
+    }
+
+    .form-control,
+    .form-select {
+        padding: 1rem;
+        
+    }
+
+    .btn-secondary {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.9rem;
+    }
+
+    .table-container {
+        max-height: 620px !important;
+        
+    }
+
+    .table th,
+    .table td {
+        padding: 8px;
+        font-size: 0.8rem;
+     
+    }
+}
 /* General Styles */
 body {
     background: linear-gradient(135deg, #121212, #333333, #0f0f0f);
@@ -175,89 +264,7 @@ body {
     border-radius: 16px;
 }
 
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 90%;
-        padding: 1.5rem;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        backdrop-filter: none;
-    }
 
-    .navbar {
-        padding: 0.75rem;
-    }
-
-    .navbar a {
-        font-size: 0.9rem;
-    }
-
-    .form-label {
-        font-size: 0.9rem;
-    }
-
-    .btn-secondary {
-        padding: 0.4rem 0.8rem;
-    }
-
-    .table th,
-    .table td {
-        padding: 10px;
-    }
-
-    .table-container {
-        max-height: 620px !important;
-        
-    }
-
-    .form-control,
-    .form-select {
-        padding: 0.75rem;
-       
-    }
-    body {
-        background-color: #333333 !important;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .container {
-        width: 100%;
-        padding: 1rem;
-    }
-    body {
-        background-color: #333333 !important;
-    }
-    .navbar {
-        padding: 0.5rem;
-    }
-
-    .navbar a {
-        font-size: 0.8rem;
-    }
-
-    .form-control,
-    .form-select {
-        padding: 1rem;
-        
-    }
-
-    .btn-secondary {
-        padding: 0.3rem 0.6rem;
-        font-size: 0.9rem;
-    }
-
-    .table-container {
-        max-height: 350px !important;
-        
-    }
-
-    .table th,
-    .table td {
-        padding: 8px;
-        font-size: 0.8rem;
-     
-    }
-}
 
 
 .alerts {
