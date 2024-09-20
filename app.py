@@ -18,7 +18,7 @@ def query_entries():
         lrank = request.form.get('lrank')
         urank = request.form.get('urank')
         round = request.form.get('round')
-        query = f"SELECT BRANCH, {cat}, COLLEGES FROM '{round}' WHERE {cat} BETWEEN {lrank} AND {urank};"
+        query = f"SELECT BRANCH, {cat}, COLLEGES FROM '{round}' WHERE {cat} BETWEEN {lrank} AND {urank} ORDER BY {cat} ASC;"
 
         response = {"rows": [], "columns": []}
         try:
