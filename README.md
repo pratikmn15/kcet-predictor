@@ -1,3 +1,3 @@
 # kcet-predictor
 
-[KCET Predicot](https://kcet-predictor.vercel.app/)
+[KCET Predictor](https://kcet-predictor.vercel.app/)
