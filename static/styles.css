@@ -134,10 +134,17 @@ body {
     border-radius: 12px;
     border: 1px solid var(--border-color);
     margin-top: 2rem;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch;
     max-height: 400px;
     position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.table-wrapper {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    flex: 1;
+    min-height: 0;
 }
 
 .table {
@@ -169,6 +176,7 @@ body {
     border-bottom: 1px solid #1a2234;
     font-size: 0.875rem;
     color: #e2e8f0;
+    white-space: nowrap;
 }
 
 .table tbody {
@@ -195,45 +203,80 @@ body {
     border-bottom: none;
 }
 
-/* Custom scrollbar for the table container */
-.table-container::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-}
-
-.table-container::-webkit-scrollbar-track {
-    background: #060911;
-    border-radius: 6px;
-}
-
-.table-container::-webkit-scrollbar-thumb {
-    background: #1a2234;
-    border-radius: 6px;
-}
-
-.table-container::-webkit-scrollbar-thumb:hover {
-    background: #2a3649;
-}
-
 /* Mobile adjustments for table */
 @media screen and (max-width: 768px) {
     .table-container {
-        max-height: 350px;
+        max-height: none;
+        margin: 1rem -1.25rem;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .table-wrapper {
+        overflow: visible;
+    }
+    
+    .table {
+        border-radius: 0;
     }
     
     .table td {
         padding: 0.875rem;
     }
+
+    /* Remove container background since table will expand */
+    .container.my-4.glass1 {
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Adjust header for full width */
+    .table th {
+        padding: 1rem 1.25rem;
+    }
+
+    /* Adjust cells for full width */
+    .table td {
+        padding: 1rem 1.25rem;
+    }
 }
 
 @media screen and (max-width: 480px) {
     .table-container {
-        max-height: 300px;
+        margin: 1rem -1rem;
     }
     
     .table td {
-        padding: 0.75rem;
+        padding: 0.75rem 1rem;
+        font-size: 0.8125rem;
     }
+
+    .table th {
+        padding: 0.75rem 1rem;
+    }
+}
+
+/* Scrollbar Styles */
+.table-wrapper::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #060911;
+    border-radius: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #1a2234;
+    border-radius: 6px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #2a3649;
 }
 
 /* Alerts */
