@@ -1,22 +1,21 @@
 {% extends 'base.html' %}
 {% block colleges %}
 
-<h1 id="target">Colleges</h1>
-<div class="alerts" id="alerts">
+<div class="container my-4 glass1">
+    <h2 class="mb-4" id="target">Available Colleges</h2>
+    
+    <div class="table-container">
+        <table class="table table-hover">
+            <thead>
+                <tr id="table-header">
+                </tr>
+            </thead>
+            <tbody id="table-data">
+            </tbody>
+        </table>
+    </div>
 </div>
 
-
-<div class="container my table-container round">
-
-  <table class="table table-dark table-striped">
-    <thead>
-      <tr id="table-header">
-      </tr>
-    </thead>
-    <tbody id="table-data">
-    </tbody>
-  </table>
-</div>
 <script>
   const form = document.getElementById('formInfo');
   form.addEventListener('submit', function (event) {
