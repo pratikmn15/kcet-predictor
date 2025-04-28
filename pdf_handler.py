@@ -1,10 +1,9 @@
 from fpdf import FPDF
-import os
+from io import BytesIO
 from datetime import datetime
-from file_cleanup import cleanup_manager
 
 def create_pdf(data, columns, year, round_name):
-    """Create a PDF file with the query results"""
+    """Create a PDF file in memory and return the bytes"""
     pdf = FPDF()
     pdf.add_page()
     
@@ -42,17 +41,5 @@ def create_pdf(data, columns, year, round_name):
                 pdf.cell(col_widths[i], 10, str(item), 1, 0, 'C')
         pdf.ln()
     
-    # Generate unique filename
-    filename = f'results_{datetime.now().strftime("%Y%m%d_%H%M%S")}.pdf'
-    filepath = os.path.join('static', 'pdfs', filename)
-    
-    # Ensure directory exists
-    os.makedirs(os.path.join('static', 'pdfs'), exist_ok=True)
-    
-    # Save PDF
-    pdf.output(filepath)
-    
-    # Register file for cleanup
-    cleanup_manager.track_file(filepath)
-    
-    return filename
+    # Return PDF as bytes
+    return pdf.output(dest='S').encode('latin-1')

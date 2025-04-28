@@ -1,26 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, send_from_directory
+from flask import Flask, render_template, request, redirect, url_for, jsonify, send_file
 from sqlalchemy import create_engine, text
 from pdf_handler import create_pdf
-from file_cleanup import cleanup_manager
+from io import BytesIO
 import os
-import atexit
 
 app = Flask(__name__)
 
 DATABASE_URI = 'sqlite:///instance/cutoffs.db'
 engine = create_engine(DATABASE_URI)
-
-def init_cleanup_manager():
-    """Initialize the cleanup manager if it's not already running"""
-    if not cleanup_manager.running:
-        cleanup_manager.start()
-        # Register cleanup_all to run when the app shuts down
-        atexit.register(cleanup_manager.stop)
-        atexit.register(cleanup_manager.cleanup_all)
-
-# Only start the cleanup manager in the main process
-if not app.debug or os.environ.get('WERKZEUG_RUN_MAIN') == 'true':
-    init_cleanup_manager()
 
 @app.route('/',methods=['POST','GET'])
 def home():
@@ -74,18 +61,25 @@ def generate_pdf():
         return jsonify({"error": "No data provided"}), 400
     
     try:
-        filename = create_pdf(data, columns, year, round_name)
-        filepath = os.path.join('static', 'pdfs', filename)
-        return jsonify({"filename": filename})
+        # Generate PDF in memory
+        pdf_content = create_pdf(data, columns, year, round_name)
+        
+        # Create BytesIO object
+        pdf_buffer = BytesIO(pdf_content)
+        pdf_buffer.seek(0)
+        
+        # Generate filename for download
+        filename = f'kcet_results_{year}_{round_type}.pdf'
+        
+        # Send file directly from memory
+        return send_file(
+            pdf_buffer,
+            mimetype='application/pdf',
+            as_attachment=True,
+            download_name=filename
+        )
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-@app.route('/download-pdf/<filename>')
-def download_pdf(filename):
-    try:
-        return send_from_directory('static/pdfs', filename, as_attachment=True)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)

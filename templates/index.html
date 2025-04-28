@@ -24,14 +24,14 @@
 
 <script>
   const form = document.getElementById('formInfo');
-  let currentData = null;  // Store the current query results
-  let currentRound = null; // Store the current round
+  let currentData = null;
+  let currentRound = null;
   
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const formData = new FormData(form);
-    currentRound = formData.get('round'); // Store the round value
+    currentRound = formData.get('round');
 
     fetch('/submit', {
       method: 'POST',
@@ -40,7 +40,7 @@
       .then(response => response.json())
       .then(data => {
         data = data.message;
-        currentData = data;  // Store the data for PDF generation
+        currentData = data;
         const tableHeader = document.getElementById('table-header');
         const tableData = document.getElementById('table-data');
         tableHeader.innerHTML = '';
@@ -93,7 +93,6 @@
         }
         alerts.textContent = "Showing results for " + round + ", " + formData.get('cat') + " category";
         
-        // Show download button after successful query
         document.getElementById('download-container').style.display = 'block';
         
         document.getElementById('target').scrollIntoView({ behavior: 'smooth' });
@@ -122,13 +121,22 @@
         round: currentRound
       })
     })
-    .then(response => response.json())
-    .then(data => {
-      if (data.error) {
-        throw new Error(data.error);
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
       }
-      // Trigger download
-      window.location.href = `/download-pdf/${data.filename}`;
+      return response.blob();
+    })
+    .then(blob => {
+      // Create a link to download the PDF
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `kcet_results.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
       downloadBtn.disabled = false;
       downloadBtn.textContent = 'Download PDF';
     })

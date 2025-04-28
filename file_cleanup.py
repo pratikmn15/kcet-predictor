@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 class FileCleanupManager:
-    def __init__(self, cleanup_interval=10):  # 10 seconds check interval
+    def __init__(self, cleanup_interval=120):  # 10 seconds check interval
         self.cleanup_interval = cleanup_interval
         self.file_timestamps = {}
         self.lock = threading.Lock()
