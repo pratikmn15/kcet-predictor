@@ -4,6 +4,10 @@
 <div class="container my-4 glass1">
     <h2 class="mb-4" id="target">Available Colleges</h2>
     
+    <div id="download-container" style="display: none; margin-bottom: 20px;">
+        <button id="download-pdf" class="btn btn-primary">Download PDF</button>
+    </div>
+    
     <div class="table-container">
         <div class="table-wrapper">
             <table class="table table-hover">
@@ -20,10 +24,14 @@
 
 <script>
   const form = document.getElementById('formInfo');
+  let currentData = null;  // Store the current query results
+  let currentRound = null; // Store the current round
+  
   form.addEventListener('submit', function (event) {
     event.preventDefault();
 
     const formData = new FormData(form);
+    currentRound = formData.get('round'); // Store the round value
 
     fetch('/submit', {
       method: 'POST',
@@ -32,6 +40,7 @@
       .then(response => response.json())
       .then(data => {
         data = data.message;
+        currentData = data;  // Store the data for PDF generation
         const tableHeader = document.getElementById('table-header');
         const tableData = document.getElementById('table-data');
         tableHeader.innerHTML = '';
@@ -84,9 +93,10 @@
         }
         alerts.textContent = "Showing results for " + round + ", " + formData.get('cat') + " category";
         
+        // Show download button after successful query
+        document.getElementById('download-container').style.display = 'block';
+        
         document.getElementById('target').scrollIntoView({ behavior: 'smooth' });
-
-
       })
       .catch(error => {
         console.error('Error:', error);
@@ -94,6 +104,41 @@
       });
   });
 
+  // PDF download functionality
+  document.getElementById('download-pdf').addEventListener('click', function() {
+    if (!currentData || !currentRound) return;
+    
+    const downloadBtn = this;
+    downloadBtn.disabled = true;
+    downloadBtn.textContent = 'Generating PDF...';
+    
+    fetch('/generate-pdf', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        ...currentData,
+        round: currentRound
+      })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.error) {
+        throw new Error(data.error);
+      }
+      // Trigger download
+      window.location.href = `/download-pdf/${data.filename}`;
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download PDF';
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      downloadBtn.disabled = false;
+      downloadBtn.textContent = 'Download PDF';
+      alert('Failed to generate PDF. Please try again.');
+    });
+  });
 </script>
 
 {% endblock colleges %}
