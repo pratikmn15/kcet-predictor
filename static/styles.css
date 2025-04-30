@@ -151,6 +151,7 @@ body {
     color: var(--text-primary);
     margin-bottom: 0;
     width: 100%;
+    min-width: 800px;
     background-color: #060911;
     border-collapse: separate;
     border-spacing: 0;

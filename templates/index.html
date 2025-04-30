@@ -11,19 +11,20 @@
     .table-scroll-container {
         width: 100%;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS devices */
+        -webkit-overflow-scrolling: touch;
+        max-height: 400px;
+        overflow-y: auto;
     }
 
     .table-wrapper {
         min-width: 100%;
-        background: rgba(255, 255, 255, 0.9);
+        background: transparent;
         border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     .table {
         margin-bottom: 0;
-        min-width: 800px; /* Ensure minimum width for content */
+        min-width: 800px;
     }
 
     .table th {
