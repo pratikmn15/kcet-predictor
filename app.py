@@ -11,6 +11,16 @@ engine = create_engine(DATABASE_URI)
 
 @app.route('/',methods=['POST','GET'])
 def home():
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    ip = ip.split(',')[0].strip()  # In case it's a comma-separated list
+
+    try:
+        geo = requests.get(f"http://ip-api.com/json/{ip}").json()
+        city = geo.get("city", "Unknown")
+        country = geo.get("country", "Unknown")
+        print(f"[VISITOR] IP: {ip} | Location: {city}, {country}")
+    except Exception as e:
+        print(f"[VISITOR] IP: {ip} | Location lookup failed: {e}")
     return render_template('index.html')
 
 @app.route('/submit',methods=['POST','GET'])
