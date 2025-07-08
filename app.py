@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from pdf_handler import create_pdf
 from io import BytesIO
 import os
+import requests
 
 app = Flask(__name__)
 
