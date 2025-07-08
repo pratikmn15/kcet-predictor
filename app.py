@@ -3,6 +3,7 @@ from sqlalchemy import create_engine, text
 from pdf_handler import create_pdf
 from io import BytesIO
 import os
+import requests
 app = Flask(__name__)
 
 DATABASE_URI = 'sqlite:///instance/cutoffs.db'
@@ -10,6 +11,15 @@ engine = create_engine(DATABASE_URI)
 
 @app.route('/',methods=['POST','GET'])
 def home():
+    ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')[0].strip()
+    try:
+        geo = requests.get(f"http://ip-api.com/json/{ip}").json()
+        city = geo.get("city", "Unknown")
+        country = geo.get("country", "Unknown")
+        print(f"[VISITOR] IP: {ip} | Location: {city}, {country}")
+    except Exception as e:
+        print(f"[VISITOR] IP: {ip} | Location lookup failed: {e}")
+
     return render_template('index.html')
 
 @app.route('/submit',methods=['POST','GET'])
@@ -60,17 +70,13 @@ def generate_pdf():
         return jsonify({"error": "No data provided"}), 400
     
     try:
-        # Generate PDF in memory
         pdf_content = create_pdf(data, columns, year, round_name)
         
-        # Create BytesIO object
         pdf_buffer = BytesIO(pdf_content)
         pdf_buffer.seek(0)
         
-        # Generate filename for download
         filename = f'kcet_results_{year}_{round_type}.pdf'
         
-        # Send file directly from memory
         return send_file(
             pdf_buffer,
             mimetype='application/pdf',
